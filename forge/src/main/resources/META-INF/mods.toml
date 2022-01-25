@@ -1,35 +1,42 @@
 modLoader = "javafml"
 loaderVersion = "[38,)"
-issueTrackerURL = "https://github.com/lukebemish/mod_template/issues"
+issueTrackerURL = "https://github.com/lukebemish/cobbled_paths/issues"
 license = "LGPL v3"
 
 [[mods]]
-modId = "mod_template"
+modId = "cobbled_paths"
 version = "${version}"
-displayName = "Simple Buffers"
+displayName = "Cobbled Paths"
 authors = "Luke Bemish"
 description = '''
 Description here
 '''
 # logoFile = "icon.png"
 
-[[dependencies.mod_template]]
+[[dependencies.cobbled_paths]]
 modId = "forge"
 mandatory = true
 versionRange = "[38,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.mod_template]]
+[[dependencies.cobbled_paths]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.18,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.mod_template]]
+[[dependencies.cobbled_paths]]
 modId = "architectury"
 mandatory = true
 versionRange = "[3.3.7,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.cobbled_paths]]
+modId = "ctm"
+mandatory = true
+versionRange = "[1.1.3,)"
 ordering = "AFTER"
 side = "BOTH"

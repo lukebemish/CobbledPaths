@@ -1,3 +1,3 @@
-# Mod Template
+# Cobbled Paths
 
 README goes here

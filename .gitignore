@@ -9,7 +9,7 @@ output/
 bin/
 libs/
 .architectury-transformer/
-
+runtime_mods/
 
 .classpath
 .project

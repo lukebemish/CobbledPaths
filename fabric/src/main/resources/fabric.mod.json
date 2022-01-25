@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "mod_template",
+  "id": "cobbled_paths",
   "version": "${version}",
   "name": "Mod Name",
   "description": "Description",
@@ -8,19 +8,22 @@
     "Luke Bemish"
   ],
   "contact": {
-    "sources": "https://github.com/lukebemish/mod_template"
+    "sources": "https://github.com/lukebemish/cobbled_paths"
   },
   "license": "LGPL v3",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "mod_template.fabric.ModTemplateFabric"
+      "cobbled_paths.fabric.CobbledPathsFabric"
     ],
     "client": [
-      "mod_template.fabric.ModTemplateClientFabric"
+      "cobbled_paths.fabric.CobbledPathsClientFabric"
     ]
   },
+  "mixins": [
+    "mixin.cobbled_paths_common.json"
+  ],
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.18",
