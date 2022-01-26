@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "cobbled_paths",
   "version": "${version}",
-  "name": "Mod Name",
-  "description": "Description",
+  "name": "Cobbled Paths",
+  "description": "Adds various cobbled and paved paths.",
   "authors": [
     "Luke Bemish"
   ],
