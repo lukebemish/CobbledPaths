@@ -1,7 +1,7 @@
 {   "parent": "block/block",
     "textures": {
-        "particle": "cobbled_paths:block/ice_path_top",
-        "top": "cobbled_paths:block/ice_path_top"
+        "particle": "cobbled_paths:block/ice_path",
+        "top": "cobbled_paths:block/ice_path"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

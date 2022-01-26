@@ -3,6 +3,11 @@ package cobbled_paths.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -15,7 +20,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class BetterPathBlock extends DirtPathBlock {
@@ -25,12 +33,18 @@ public class BetterPathBlock extends DirtPathBlock {
     public static final BooleanProperty EAST;
     public static final BooleanProperty WEST;
 
+    public final Map<Item, Block> TRANSFORMS;
+
     public BetterPathBlock(Properties properties) {
         this(properties, Blocks.DIRT.defaultBlockState());
     }
 
     public BetterPathBlock(Properties properties, BlockState blockState) {
+        this(properties, blockState, new HashMap<>());
+    }
+    public BetterPathBlock(Properties properties, BlockState blockState, Map<Item, Block> transforms) {
         super(properties);
+        this.TRANSFORMS = transforms;
         this.origBlockState = blockState;
         this.registerDefaultState((this.stateDefinition.any()).setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(EAST, false).setValue(WEST, false));
@@ -43,6 +57,28 @@ public class BetterPathBlock extends DirtPathBlock {
         WEST = BlockStateProperties.WEST;
     }
 
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (level.isClientSide()) {
+            return super.use(state, level, pos, player, hand, hit);
+        }
+        ItemStack heldItemStack = player.getItemInHand(hand);
+        Item heldItem = heldItemStack.getItem();
+        Block toTransform = TRANSFORMS.get(heldItem);
+        if (toTransform instanceof BetterPathBlock betterPathBlock) {
+            BlockState outState = betterPathBlock.defaultBlockState();
+            outState = betterPathBlock.updateBlockState(outState, level, pos);
+            level.setBlock(pos, outState, 11);
+            if (!player.isCreative()) {
+                if (level.random.nextInt(4) == 2) {
+                    player.getItemInHand(hand).shrink(1);
+                }
+            }
+            return InteractionResult.CONSUME;
+        } else {
+            return super.use(state, level, pos, player, hand, hit);
+        }
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {

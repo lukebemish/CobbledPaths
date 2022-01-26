@@ -4,9 +4,14 @@
     "item.cobbled_paths.deepslate_sett":"Deepslate Sett",
     "item.cobbled_paths.ice_sett":"Ice Sett",
     "item.cobbled_paths.blue_ice_sett":"Blue Ice Sett",
+    "item.cobbled_paths.sledgehammer":"Sledgehammer",
     "block.cobbled_paths.cobbled_path":"Cobbled Path",
     "block.cobbled_paths.stone_path":"Stone Paved Path",
     "block.cobbled_paths.deepslate_path":"Deepslate Paved Path",
     "block.cobbled_paths.ice_path":"Ice Paved Path",
-    "block.cobbled_paths.blue_ice_path":"Blue Ice Paved Path"
+    "block.cobbled_paths.blue_ice_path":"Blue Ice Paved Path",
+    "block.cobbled_paths.cracked_stone_path":"Cracked Stone Paved Path",
+    "block.cobbled_paths.cracked_deepslate_path":"Cracked Deepslate Paved Path",
+    "block.cobbled_paths.cracked_ice_path":"Cracked Ice Paved Path",
+    "block.cobbled_paths.cracked_blue_ice_path":"Cracked Blue Ice Paved Path"
 }

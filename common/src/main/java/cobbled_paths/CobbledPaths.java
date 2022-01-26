@@ -13,5 +13,6 @@ public class CobbledPaths {
     public static void init() {
         CobbledPathsBlocks.init();
         CobbledPathsItems.init();
+        CobbledPathsBlocks.initTransforms();
     }
 }

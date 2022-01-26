@@ -24,16 +24,16 @@ public class DirtPathBlockMixin {
             BlockPos ePosAbove = abovePos.relative(Direction.EAST);
             BlockPos wPosAbove = abovePos.relative(Direction.WEST);
             if (levelAccessor.getBlockState(nPosAbove).getBlock() instanceof BetterPathBlock bpb) {
-                levelAccessor.setBlockAndUpdate(nPosAbove, levelAccessor.getBlockState(nPosAbove).setValue(BetterPathBlock.SOUTH, bpb.hasBelow(levelAccessor, nPosAbove)));
+                levelAccessor.setBlockAndUpdate(nPosAbove, levelAccessor.getBlockState(nPosAbove).setValue(BetterPathBlock.SOUTH, bpb.hasBelow(levelAccessor, nPosAbove.relative(Direction.DOWN))));
             }
             if (levelAccessor.getBlockState(sPosAbove).getBlock() instanceof BetterPathBlock bpb) {
-                levelAccessor.setBlockAndUpdate(sPosAbove, levelAccessor.getBlockState(sPosAbove).setValue(BetterPathBlock.NORTH, bpb.hasBelow(levelAccessor, nPosAbove)));
+                levelAccessor.setBlockAndUpdate(sPosAbove, levelAccessor.getBlockState(sPosAbove).setValue(BetterPathBlock.NORTH, bpb.hasBelow(levelAccessor, sPosAbove.relative(Direction.DOWN))));
             }
             if (levelAccessor.getBlockState(ePosAbove).getBlock() instanceof BetterPathBlock bpb) {
-                levelAccessor.setBlockAndUpdate(ePosAbove, levelAccessor.getBlockState(ePosAbove).setValue(BetterPathBlock.WEST, bpb.hasBelow(levelAccessor, nPosAbove)));
+                levelAccessor.setBlockAndUpdate(ePosAbove, levelAccessor.getBlockState(ePosAbove).setValue(BetterPathBlock.WEST, bpb.hasBelow(levelAccessor, ePosAbove.relative(Direction.DOWN))));
             }
             if (levelAccessor.getBlockState(wPosAbove).getBlock() instanceof BetterPathBlock bpb) {
-                levelAccessor.setBlockAndUpdate(wPosAbove, levelAccessor.getBlockState(wPosAbove).setValue(BetterPathBlock.EAST, bpb.hasBelow(levelAccessor, nPosAbove)));
+                levelAccessor.setBlockAndUpdate(wPosAbove, levelAccessor.getBlockState(wPosAbove).setValue(BetterPathBlock.EAST, bpb.hasBelow(levelAccessor, wPosAbove.relative(Direction.DOWN))));
 
             }
         }
