@@ -62,7 +62,6 @@ public class BetterPathBlock extends DirtPathBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
         blockState = this.updateBlockState(blockState, levelAccessor, blockPos);
-        System.out.println(blockState);
         return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
     }
 
@@ -73,12 +72,11 @@ public class BetterPathBlock extends DirtPathBlock {
         BlockPos wPos = blockPos.west();
         BlockPos dPos = blockPos.below();
         boolean hasBelow = hasBelow(levelReader, dPos);
-        System.out.println(hasBelow);
-        boolean n = canSurvive(blockState, levelReader, nPos.below()) && hasBelow;
-        boolean s = canSurvive(blockState, levelReader, sPos.below()) && hasBelow;
-        boolean e = canSurvive(blockState, levelReader, ePos.below()) && hasBelow;
-        boolean w = canSurvive(blockState, levelReader, wPos.below()) && hasBelow;
-        return blockState.setValue(NORTH, n).setValue(SOUTH, s).setValue(EAST, e).setValue(WEST, w);
+        boolean n = levelReader.getBlockState(nPos.below()).getBlock() instanceof DirtPathBlock;
+        boolean s = levelReader.getBlockState(sPos.below()).getBlock() instanceof DirtPathBlock;
+        boolean e = levelReader.getBlockState(ePos.below()).getBlock() instanceof DirtPathBlock;
+        boolean w = levelReader.getBlockState(wPos.below()).getBlock() instanceof DirtPathBlock;
+        return blockState.setValue(NORTH, n && hasBelow).setValue(SOUTH, s && hasBelow).setValue(EAST, e && hasBelow).setValue(WEST, w && hasBelow);
     }
 
     @Override
