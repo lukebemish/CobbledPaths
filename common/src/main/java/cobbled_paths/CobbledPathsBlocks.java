@@ -48,11 +48,11 @@ public class CobbledPathsBlocks {
     public static final RegistrySupplier<Block> NETHER_BRICK_PATH = BLOCKS.register("nether_brick_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.70f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
-                    .speedFactor(1.00f), Blocks.SOUL_SAND.defaultBlockState(), netherBrickPathTransforms));
+                    .speedFactor(1.10f), Blocks.SOUL_SAND.defaultBlockState(), netherBrickPathTransforms));
     public static final RegistrySupplier<Block> BLACKSTONE_PATH = BLOCKS.register("blackstone_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
-                    .speedFactor(1.30f), Blocks.SOUL_SAND.defaultBlockState(), blackstoneTransforms));
+                    .speedFactor(1.50f), Blocks.SOUL_SAND.defaultBlockState(), blackstoneTransforms));
 
     // cracked paths
     public static final RegistrySupplier<Block> CRACKED_STONE_PATH = BLOCKS.register("cracked_stone_path", () ->
@@ -74,11 +74,11 @@ public class CobbledPathsBlocks {
     public static final RegistrySupplier<Block> CRACKED_NETHER_BRICK_PATH = BLOCKS.register("cracked_nether_brick_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.70f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
-                    .speedFactor(1.00f), Blocks.SOUL_SAND.defaultBlockState()));
+                    .speedFactor(1.10f), Blocks.SOUL_SAND.defaultBlockState()));
     public static final RegistrySupplier<Block> CRACKED_BLACKSTONE_PATH = BLOCKS.register("cracked_blackstone_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
-                    .speedFactor(1.30f), Blocks.SOUL_SAND.defaultBlockState()));
+                    .speedFactor(1.50f), Blocks.SOUL_SAND.defaultBlockState()));
 
     //decorated
     public static final RegistrySupplier<Block> MOSSY_COBBLED_PATH = BLOCKS.register("mossy_cobbled_path", () ->
@@ -88,18 +88,18 @@ public class CobbledPathsBlocks {
     public static final RegistrySupplier<Block> RED_NETHER_BRICK_PATH = BLOCKS.register("red_nether_brick_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.70f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
-                    .speedFactor(1.00f), Blocks.SOUL_SAND.defaultBlockState()));
+                    .speedFactor(1.10f), Blocks.SOUL_SAND.defaultBlockState()));
     public static final RegistrySupplier<Block> GILDED_BLACKSTONE_PATH = BLOCKS.register("gilded_blackstone_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
-                    .speedFactor(1.30f), Blocks.SOUL_SAND.defaultBlockState()));
+                    .speedFactor(1.50f), Blocks.SOUL_SAND.defaultBlockState()));
 
     public static void init() {
         BLOCKS.register();
     }
 
     public static void initTransforms() {
-        cobbledPathTransforms.put(Items.MOSS_BLOCK, MOSSY_COBBLED_PATH.get());
+        cobbledPathTransforms.put(CobbledPathsItems.MOSS_BALL.get(), MOSSY_COBBLED_PATH.get());
         netherBrickPathTransforms.put(Items.NETHER_WART, RED_NETHER_BRICK_PATH.get());
         blackstoneTransforms.put(Items.GOLD_NUGGET, GILDED_BLACKSTONE_PATH.get());
     }

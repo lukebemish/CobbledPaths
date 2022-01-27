@@ -30,12 +30,16 @@ public class CobbledPathsItems {
             new SettItem(new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS), CobbledPathsBlocks.BLUE_ICE_PATH.get(), Blocks.SNOW_BLOCK));
     public static final RegistrySupplier<Item> NETHER_BRICK_SETT = ITEMS.register("nether_brick_sett", () ->
             new SettItem(new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS), CobbledPathsBlocks.NETHER_BRICK_PATH.get(), Blocks.SOUL_SAND));
-    public static final RegistrySupplier<Item> BLACKSTONE_SETT = ITEMS.register("blockstone_sett", () ->
+    public static final RegistrySupplier<Item> BLACKSTONE_SETT = ITEMS.register("blackstone_sett", () ->
             new SettItem(new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS), CobbledPathsBlocks.BLACKSTONE_PATH.get(), Blocks.SOUL_SAND));
 
     //hammer
     public static final RegistrySupplier<Item> SLEDGEHAMMER = ITEMS.register("sledgehammer", () ->
             new DurabilityTransformItem(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).stacksTo(1).defaultDurability(512), hammerTransforms, Items.COPPER_INGOT));
+
+    //other
+    public static final RegistrySupplier<Item> MOSS_BALL = ITEMS.register("moss_ball", () ->
+            new Item(new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 
     public static void init() {
         hammerTransforms.put(CobbledPathsBlocks.STONE_PATH.get(), CobbledPathsBlocks.CRACKED_STONE_PATH.get());

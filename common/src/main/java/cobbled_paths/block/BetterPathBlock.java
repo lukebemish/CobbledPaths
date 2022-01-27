@@ -70,9 +70,7 @@ public class BetterPathBlock extends DirtPathBlock {
             outState = betterPathBlock.updateBlockState(outState, level, pos);
             level.setBlock(pos, outState, 11);
             if (!player.isCreative()) {
-                if (level.random.nextInt(4) == 2) {
-                    player.getItemInHand(hand).shrink(1);
-                }
+                player.getItemInHand(hand).shrink(1);
             }
             return InteractionResult.CONSUME;
         } else {
