@@ -6,8 +6,12 @@
     "item.cobbled_paths.blue_ice_sett":"Blue Ice Sett",
     "item.cobbled_paths.nether_brick_sett":"Nether Brick Sett",
     "item.cobbled_paths.blackstone_sett":"Blackstone Sett",
+    "item.cobbled_paths.obsidian_sett":"Obsidian Sett",
+    "item.cobbled_paths.purpur_sett":"Purpur Sett",
     "item.cobbled_paths.moss_ball":"Moss Ball",
     "item.cobbled_paths.sledgehammer":"Sledgehammer",
+    "item.cobbled_paths.spade":"Spade",
+    "block.cobbled_paths.end_stone_gravel":"End Stone Gravel",
     "block.cobbled_paths.cobbled_path":"Cobbled Path",
     "block.cobbled_paths.mossy_cobbled_path":"Mossy Cobbled Path",
     "block.cobbled_paths.stone_path":"Stone Paved Path",
@@ -23,5 +27,9 @@
     "block.cobbled_paths.red_nether_brick_path":"Red Nether Brick Paved Path",
     "block.cobbled_paths.blackstone_path":"Blackstone Paved Path",
     "block.cobbled_paths.cracked_blackstone_path":"Cracked Blackstone Paved Path",
-    "block.cobbled_paths.gilded_blackstone_path":"Gilded Blackstone Paved Path"
+    "block.cobbled_paths.gilded_blackstone_path":"Gilt Blackstone Paved Path",
+    "block.cobbled_paths.obsidian_path":"Obsidian Paved Path",
+    "block.cobbled_paths.purpur_path":"Purpur Paved Path",
+    "block.cobbled_paths.cracked_obsidian_path":"Cracked Obsidian Paved Path",
+    "block.cobbled_paths.cracked_purpur_path":"Cracked Purpur Paved Path"
 }

@@ -13,14 +13,23 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SettItem extends Item {
     private Block targetBlock;
-    private Block originalBlock;
+    private List<Block> originalBlock = new ArrayList<>();
 
     public SettItem(Properties properties, Block targetBlock, Block originalBlock) {
         super(properties);
         this.targetBlock = targetBlock;
-        this.originalBlock = originalBlock;
+        this.originalBlock.add(originalBlock);
+    }
+
+    public SettItem(Properties properties, Block targetBlock, List<Block> originalBlocks) {
+        super(properties);
+        this.targetBlock = targetBlock;
+        this.originalBlock = originalBlocks;
     }
 
     @Override
@@ -32,7 +41,7 @@ public class SettItem extends Item {
             return InteractionResult.PASS;
         } else {
             Player player = useOnContext.getPlayer();
-            if (blockState.is(originalBlock)) {
+            if (originalBlock.stream().anyMatch(blockState::is)) {
                 if (targetBlock instanceof  BetterPathBlock newTarget) {
                     level.playSound(player, blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
                     BlockState outState = newTarget.defaultBlockState();

@@ -1,3 +1,9 @@
+### Cobbled Paths v0.1.4
+
+- Added the spade, a tool to easily switch out path base materials
+- Added end-themed paths
+- Added End Stone Gravel, produced by using a sledgehammer on gravel
+
 ### Cobbled Paths v0.1.3
 
 - Added Nether Brick and Blackstone paths

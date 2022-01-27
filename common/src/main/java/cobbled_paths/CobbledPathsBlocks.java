@@ -11,9 +11,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GravelBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +28,11 @@ public class CobbledPathsBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(CobbledPaths.MOD_ID, Registry.BLOCK_REGISTRY);
 
+    //not a path
+    public static final RegistrySupplier<Block> END_STONE_GRAVEL = BLOCKS.register("end_stone_gravel", () ->
+            new GravelBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.6F).sound(SoundType.GRAVEL)));
+
+    //normal paths
     public static final RegistrySupplier<Block> COBBLED_PATH = BLOCKS.register("cobbled_path", () ->
             new BetterPathBlock(BlockProperties.of(Material.DIRT).sound(SoundType.GRASS).strength(0.70f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
@@ -53,6 +61,14 @@ public class CobbledPathsBlocks {
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
                     .speedFactor(1.50f), Blocks.SOUL_SAND.defaultBlockState(), blackstoneTransforms));
+    public static final RegistrySupplier<Block> OBSIDIAN_PATH = BLOCKS.register("obsidian_path", () ->
+            new BetterPathBlock(BlockProperties.of(Material.STONE).strength(1.00f)
+                    .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
+                    .speedFactor(1.30f), END_STONE_GRAVEL.get().defaultBlockState()));
+    public static final RegistrySupplier<Block> PURPUR_PATH = BLOCKS.register("purpur_path", () ->
+            new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
+                    .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
+                    .speedFactor(1.50f), END_STONE_GRAVEL.get().defaultBlockState()));
 
     // cracked paths
     public static final RegistrySupplier<Block> CRACKED_STONE_PATH = BLOCKS.register("cracked_stone_path", () ->
@@ -79,6 +95,14 @@ public class CobbledPathsBlocks {
             new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
                     .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
                     .speedFactor(1.50f), Blocks.SOUL_SAND.defaultBlockState()));
+    public static final RegistrySupplier<Block> CRACKED_OBSIDIAN_PATH = BLOCKS.register("cracked_obsidian_path", () ->
+            new BetterPathBlock(BlockProperties.of(Material.STONE).strength(1.00f)
+                    .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
+                    .speedFactor(1.30f), END_STONE_GRAVEL.get().defaultBlockState()));
+    public static final RegistrySupplier<Block> CRACKED_PURPUR_PATH = BLOCKS.register("cracked_purpur_path", () ->
+            new BetterPathBlock(BlockProperties.of(Material.STONE).strength(0.75f)
+                    .isViewBlocking(CobbledPathsBlocks::always).isSuffocating(CobbledPathsBlocks::always)
+                    .speedFactor(1.50f), END_STONE_GRAVEL.get().defaultBlockState()));
 
     //decorated
     public static final RegistrySupplier<Block> MOSSY_COBBLED_PATH = BLOCKS.register("mossy_cobbled_path", () ->
