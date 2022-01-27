@@ -6,6 +6,7 @@
     "item.cobbled_paths.blue_ice_sett":"Blue Ice Sett",
     "item.cobbled_paths.sledgehammer":"Sledgehammer",
     "block.cobbled_paths.cobbled_path":"Cobbled Path",
+    "block.cobbled_paths.mossy_cobbled_path":"Mossy Cobbled Path",
     "block.cobbled_paths.stone_path":"Stone Paved Path",
     "block.cobbled_paths.deepslate_path":"Deepslate Paved Path",
     "block.cobbled_paths.ice_path":"Ice Paved Path",
@@ -13,5 +14,11 @@
     "block.cobbled_paths.cracked_stone_path":"Cracked Stone Paved Path",
     "block.cobbled_paths.cracked_deepslate_path":"Cracked Deepslate Paved Path",
     "block.cobbled_paths.cracked_ice_path":"Cracked Ice Paved Path",
-    "block.cobbled_paths.cracked_blue_ice_path":"Cracked Blue Ice Paved Path"
+    "block.cobbled_paths.cracked_blue_ice_path":"Cracked Blue Ice Paved Path",
+    "block.cobbled_paths.nether_brick_path":"Nether Brick Paved Path",
+    "block.cobbled_paths.cracked_nether_brick_path":"Cracked Nether Brick Paved Path",
+    "block.cobbled_paths.red_nether_brick_path":"Red Nether Brick Paved Path",
+    "block.cobbled_paths.blackstone_path":"Blackstone Paved Path",
+    "block.cobbled_paths.cracked_blackstone_path":"Cracked Blackstone Paved Path",
+    "block.cobbled_paths.gilded_blackstone_path":"Gilded Blackstone Paved Path"
 }
