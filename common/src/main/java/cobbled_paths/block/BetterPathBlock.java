@@ -1,7 +1,9 @@
 package cobbled_paths.block;
 
+import cobbled_paths.RegUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -14,7 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DirtPathBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -25,9 +26,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class BetterPathBlock extends DirtPathBlock {
-    private final BlockState origBlockState;
+    private final Supplier<Block> blockSupplier;
     public static final BooleanProperty NORTH;
     public static final BooleanProperty SOUTH;
     public static final BooleanProperty EAST;
@@ -36,16 +38,16 @@ public class BetterPathBlock extends DirtPathBlock {
     public final Map<Item, Block> TRANSFORMS;
 
     public BetterPathBlock(Properties properties) {
-        this(properties, Blocks.DIRT.defaultBlockState());
+        this(properties, RegUtil.getVanillaBlockSupplier(new ResourceLocation("minecraft","dirt")));
     }
 
-    public BetterPathBlock(Properties properties, BlockState blockState) {
-        this(properties, blockState, new HashMap<>());
+    public BetterPathBlock(Properties properties, Supplier<Block> blockSupplier) {
+        this(properties, blockSupplier, new HashMap<>());
     }
-    public BetterPathBlock(Properties properties, BlockState blockState, Map<Item, Block> transforms) {
+    public BetterPathBlock(Properties properties, Supplier<Block> blockSupplier, Map<Item, Block> transforms) {
         super(properties);
         this.TRANSFORMS = transforms;
-        this.origBlockState = blockState;
+        this.blockSupplier = blockSupplier;
         this.registerDefaultState((this.stateDefinition.any()).setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(EAST, false).setValue(WEST, false));
     }
@@ -81,7 +83,7 @@ public class BetterPathBlock extends DirtPathBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         if (!this.defaultBlockState().canSurvive(blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos())) {
-            return Block.pushEntitiesUp(this.defaultBlockState(), this.origBlockState, blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos());
+            return Block.pushEntitiesUp(this.defaultBlockState(), this.blockSupplier.get().defaultBlockState(), blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos());
         }
         Level blockGetter = blockPlaceContext.getLevel();
         BlockState stateOut = this.defaultBlockState();
@@ -124,6 +126,6 @@ public class BetterPathBlock extends DirtPathBlock {
     }
 
     public void turnToOriginal(BlockState blockState, Level level, BlockPos blockPos) {
-        level.setBlockAndUpdate(blockPos, pushEntitiesUp(blockState, this.origBlockState, level, blockPos));
+        level.setBlockAndUpdate(blockPos, pushEntitiesUp(blockState, this.blockSupplier.get().defaultBlockState(), level, blockPos));
     }
 }

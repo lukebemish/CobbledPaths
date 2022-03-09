@@ -15,18 +15,19 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class SettItem extends Item {
-    private Block targetBlock;
-    private List<Block> originalBlock = new ArrayList<>();
+    private Supplier<Block> targetBlock;
+    private List<Supplier<Block>> originalBlock = new ArrayList<>();
 
-    public SettItem(Properties properties, Block targetBlock, Block originalBlock) {
+    public SettItem(Properties properties, Supplier<Block> targetBlock, Supplier<Block> originalBlock) {
         super(properties);
         this.targetBlock = targetBlock;
         this.originalBlock.add(originalBlock);
     }
 
-    public SettItem(Properties properties, Block targetBlock, List<Block> originalBlocks) {
+    public SettItem(Properties properties, Supplier<Block> targetBlock, List<Supplier<Block>> originalBlocks) {
         super(properties);
         this.targetBlock = targetBlock;
         this.originalBlock = originalBlocks;
@@ -41,8 +42,8 @@ public class SettItem extends Item {
             return InteractionResult.PASS;
         } else {
             Player player = useOnContext.getPlayer();
-            if (originalBlock.stream().anyMatch(blockState::is)) {
-                if (targetBlock instanceof  BetterPathBlock newTarget) {
+            if (originalBlock.stream().anyMatch((x)->blockState.is(x.get()))) {
+                if (targetBlock.get() instanceof BetterPathBlock newTarget) {
                     level.playSound(player, blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
                     BlockState outState = newTarget.defaultBlockState();
                     outState = newTarget.updateBlockState(outState, level, blockPos);

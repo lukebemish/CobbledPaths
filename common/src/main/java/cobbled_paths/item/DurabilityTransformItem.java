@@ -15,12 +15,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class DurabilityTransformItem extends Item {
     protected final Map<Block, Block> TRANSFORMS;
-    private final Item repairItem;
+    private final Supplier<Item> repairItem;
 
-    public DurabilityTransformItem(Properties properties, Map<Block, Block> transforms, Item repairItem) {
+    public DurabilityTransformItem(Properties properties, Map<Block, Block> transforms, Supplier<Item> repairItem) {
         super(properties);
         TRANSFORMS = transforms;
         this.repairItem = repairItem;
@@ -28,7 +29,7 @@ public class DurabilityTransformItem extends Item {
 
     @Override
     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
-        return repairCandidate.is(repairItem) || super.isValidRepairItem(stack, repairCandidate);
+        return repairCandidate.is(repairItem.get()) || super.isValidRepairItem(stack, repairCandidate);
     }
 
     @Override
