@@ -58,6 +58,10 @@ public class CobbledPathsItems {
             new BlockItem(CobbledPathsBlocks.END_STONE_GRAVEL.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 
     public static void init() {
+        ITEMS.register();
+    }
+
+    public static void initTransforms() {
         pathLike.add(CobbledPathsBlocks.END_STONE_GRAVEL.get());
         hammerTransforms.put(Blocks.END_STONE, CobbledPathsBlocks.END_STONE_GRAVEL.get());
         hammerTransforms.put(CobbledPathsBlocks.STONE_PATH.get(), CobbledPathsBlocks.CRACKED_STONE_PATH.get());
@@ -68,7 +72,6 @@ public class CobbledPathsItems {
         hammerTransforms.put(CobbledPathsBlocks.BLACKSTONE_PATH.get(), CobbledPathsBlocks.CRACKED_BLACKSTONE_PATH.get());
         hammerTransforms.put(CobbledPathsBlocks.OBSIDIAN_PATH.get(), CobbledPathsBlocks.CRACKED_OBSIDIAN_PATH.get());
         hammerTransforms.put(CobbledPathsBlocks.PURPUR_PATH.get(), CobbledPathsBlocks.CRACKED_PURPUR_PATH.get());
-        ITEMS.register();
         spadePlacement.put(Items.DIRT, Blocks.DIRT_PATH);
         spadePlacement.put(Items.SOUL_SAND, Blocks.SOUL_SAND);
         spadePlacement.put(END_STONE_GRAVEL_ITEM.get(), CobbledPathsBlocks.END_STONE_GRAVEL.get());
