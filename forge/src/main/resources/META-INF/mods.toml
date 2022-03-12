@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[38,)"
+loaderVersion = "[40,)"
 issueTrackerURL = "https://github.com/lukebemish/cobbled_paths/issues"
 license = "LGPL v3"
 
@@ -16,20 +16,20 @@ logoFile = "icon.png"
 [[dependencies.cobbled_paths]]
 modId = "forge"
 mandatory = true
-versionRange = "[38,)"
+versionRange = "[40,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.cobbled_paths]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18,)"
+versionRange = "[1.18.2,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.cobbled_paths]]
 modId = "architectury"
 mandatory = true
-versionRange = "[3.3.7,)"
+versionRange = "[3.4.9,)"
 ordering = "AFTER"
 side = "BOTH"

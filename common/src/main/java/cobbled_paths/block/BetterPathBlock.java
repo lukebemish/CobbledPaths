@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -96,6 +97,7 @@ public class BetterPathBlock extends DirtPathBlock {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
         blockState = this.updateBlockState(blockState, levelAccessor, blockPos);
         return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);

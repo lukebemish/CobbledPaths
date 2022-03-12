@@ -1,3 +1,8 @@
+### Cobbled Paths v0.1.7
+
+- Fix various bugs
+- Remove deprecated Architectury API calls 
+
 ### Cobbled Paths v0.1.4
 
 - Added the spade, a tool to easily switch out path base materials
