@@ -1,12 +1,12 @@
-package cobbled_paths.forge;
+package com.github.lukebemish.cobbled_paths.forge;
 
-import cobbled_paths.CobbledPathsBlocks;
-import cobbled_paths.CobbledPathsItems;
+import com.github.lukebemish.cobbled_paths.CobbledPathsBlocks;
+import com.github.lukebemish.cobbled_paths.CobbledPathsItems;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
-import cobbled_paths.CobbledPaths;
+import com.github.lukebemish.cobbled_paths.CobbledPaths;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;

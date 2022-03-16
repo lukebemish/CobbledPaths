@@ -1,7 +1,7 @@
-package cobbled_paths.fabric;
+package com.github.lukebemish.cobbled_paths.fabric;
 
+import com.github.lukebemish.cobbled_paths.CobbledPathsClient;
 import net.fabricmc.api.ClientModInitializer;
-import cobbled_paths.CobbledPathsClient;
 
 public class CobbledPathsClientFabric implements ClientModInitializer {
     @Override

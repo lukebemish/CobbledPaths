@@ -1,6 +1,6 @@
-package cobbled_paths;
+package com.github.lukebemish.cobbled_paths;
 
-import cobbled_paths.block.BetterPathBlock;
+import com.github.lukebemish.cobbled_paths.block.BetterPathBlock;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.BlockPos;

@@ -1,4 +1,4 @@
-package cobbled_paths;
+package com.github.lukebemish.cobbled_paths;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.Registries;

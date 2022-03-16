@@ -1,6 +1,6 @@
-package cobbled_paths.block;
+package com.github.lukebemish.cobbled_paths.block;
 
-import cobbled_paths.RegUtil;
+import com.github.lukebemish.cobbled_paths.RegUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;

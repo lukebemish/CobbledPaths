@@ -15,10 +15,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "cobbled_paths.fabric.CobbledPathsFabric"
+      "com.github.lukebemish.cobbled_paths.fabric.CobbledPathsFabric"
     ],
     "client": [
-      "cobbled_paths.fabric.CobbledPathsClientFabric"
+      "com.github.lukebemish.cobbled_paths.fabric.CobbledPathsClientFabric"
     ]
   },
   "mixins": [

@@ -1,4 +1,4 @@
-package cobbled_paths.forge;
+package com.github.lukebemish.cobbled_paths.forge;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;

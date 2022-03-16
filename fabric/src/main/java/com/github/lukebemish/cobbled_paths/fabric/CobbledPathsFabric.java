@@ -1,8 +1,8 @@
-package cobbled_paths.fabric;
+package com.github.lukebemish.cobbled_paths.fabric;
 
-import cobbled_paths.CobbledPaths;
-import cobbled_paths.CobbledPathsBlocks;
-import cobbled_paths.CobbledPathsItems;
+import com.github.lukebemish.cobbled_paths.CobbledPaths;
+import com.github.lukebemish.cobbled_paths.CobbledPathsBlocks;
+import com.github.lukebemish.cobbled_paths.CobbledPathsItems;
 import net.fabricmc.api.ModInitializer;
 
 public class CobbledPathsFabric implements ModInitializer {

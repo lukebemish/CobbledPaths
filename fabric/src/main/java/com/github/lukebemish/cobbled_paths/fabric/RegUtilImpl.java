@@ -1,4 +1,4 @@
-package cobbled_paths.fabric;
+package com.github.lukebemish.cobbled_paths.fabric;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;

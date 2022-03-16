@@ -1,4 +1,4 @@
-package cobbled_paths;
+package com.github.lukebemish.cobbled_paths;
 
 import com.google.common.base.Suppliers;
 import dev.architectury.registry.registries.Registries;

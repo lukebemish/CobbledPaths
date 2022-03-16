@@ -1,6 +1,6 @@
-package cobbled_paths.item;
+package com.github.lukebemish.cobbled_paths.item;
 
-import cobbled_paths.block.BetterPathBlock;
+import com.github.lukebemish.cobbled_paths.block.BetterPathBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;

@@ -1,4 +1,4 @@
-package cobbled_paths.item;
+package com.github.lukebemish.cobbled_paths.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

@@ -1,6 +1,6 @@
-package cobbled_paths.mixin;
+package com.github.lukebemish.cobbled_paths.mixin;
 
-import cobbled_paths.CobbledPathsBlocks;
+import com.github.lukebemish.cobbled_paths.CobbledPathsBlocks;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

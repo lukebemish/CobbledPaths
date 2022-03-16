@@ -1,8 +1,8 @@
-package cobbled_paths;
+package com.github.lukebemish.cobbled_paths;
 
-import cobbled_paths.item.DurabilityTransformItem;
-import cobbled_paths.item.SettItem;
-import cobbled_paths.item.SpadeItem;
+import com.github.lukebemish.cobbled_paths.item.DurabilityTransformItem;
+import com.github.lukebemish.cobbled_paths.item.SettItem;
+import com.github.lukebemish.cobbled_paths.item.SpadeItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Registry;

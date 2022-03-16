@@ -1,6 +1,6 @@
-package cobbled_paths.mixin;
+package com.github.lukebemish.cobbled_paths.mixin;
 
-import cobbled_paths.block.BetterPathBlock;
+import com.github.lukebemish.cobbled_paths.block.BetterPathBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
