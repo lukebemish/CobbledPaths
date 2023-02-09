@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "cobbledpaths:nether_brick_path",
+        "cobbledpaths:cracked_nether_brick_path",
+        "cobbledpaths:red_nether_brick_path",
+        "cobbledpaths:blackstone_path",
+        "cobbledpaths:cracked_blackstone_path",
+        "cobbledpaths:gilded_blackstone_path"
+    ]
+}

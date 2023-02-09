@@ -1,0 +1,124 @@
+plugins {
+    alias libs.plugins.forgegradle
+    alias libs.plugins.librarian
+    alias libs.plugins.mixin
+}
+
+archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-forge"
+
+minecraft {
+    mappings channel: 'parchment', version: "${libs.versions.parchment.minecraft.get()}-${libs.versions.parchment.mappings.get()}-${libs.versions.minecraft.get()}"
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName 'Client'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                modClientRun {
+                    source sourceSets.main
+                    source project(":Common").sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName 'Server'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                modServerRun {
+                    source sourceSets.main
+                    source project(":Common").sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            taskName 'Data'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                modDataRun {
+                    source sourceSets.main
+                    source project(":Common").sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+mixin {
+    add project(":Common").sourceSets.main, 'cobbledpaths.refmap.json'
+    config 'mixin.cobbledpaths_common.json'
+}
+
+sourceSets.main.resources.srcDir 'src/generated/resources'
+
+repositories {
+}
+
+jarJar.enable()
+
+dependencies {
+    minecraft libs.forge
+
+    annotationProcessor "org.spongepowered:mixin:${libs.versions.mixin.get()}:processor"
+
+    implementation fg.deobf(libs.cgl.forge.get())
+    compileOnly libs.jankson
+
+    compileOnly "com.matyrobbrt.gml:gml:${libs.versions.gml.get()}:all"
+    runtimeOnly(fg.deobf("com.matyrobbrt.gml:gml:${libs.versions.gml.get()}:all")) {
+        exclude module: 'transform'
+    }
+
+    compileOnly project(path: ":Common", configuration: "namedElements")
+}
+
+tasks.withType(GroovyCompile) {
+    source project(":Common").sourceSets.main.allGroovy
+}
+
+tasks.withType(JavaCompile) {
+    source project(":Common").sourceSets.main.allJava
+}
+
+processResources {
+    from project(':Common').sourceSets.main.resources
+    exclude 'mods.groovy'
+}
+
+jar {
+    classifier 'partial'
+    finalizedBy('reobfJar')
+}
+
+tasks.build.dependsOn tasks.jarJar
+
+reobf {
+    jarJar {}
+}
+
+tasks.jarJar {
+    classifier ''
+    finalizedBy tasks.reobfJarJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = "${mod_id}-${libs.versions.minecraft.get()}-forge"
+            version = project.version
+            artifacts = [tasks.jarJar, sourcesJar]
+        }
+    }
+}

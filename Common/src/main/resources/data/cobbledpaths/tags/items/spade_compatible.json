@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:dirt",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:end_stone",
+    "minecraft:gravel"
+  ]
+}

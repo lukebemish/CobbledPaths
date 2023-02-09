@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:moss_block"
-  },
-  "result": "cobbled_paths:moss_ball",
-  "count": 16
-}

@@ -1,0 +1,47 @@
+[versions]
+minecraft = "1.19.3"
+parchment_minecraft = "1.19.3"
+parchment_mappings = "2023.02.05"
+quilt_loader = "0.18.1-beta.68"
+
+qfapi = "5.0.0-beta.4+0.73.0-1.19.3"
+groovyduvet = "2.0.3"
+cgl = "0.2.2"
+jankson = "1.2.1"
+
+gml = "1.2.0"
+
+groovy = "4.0.8"
+
+forge = "1.19.3-44.1.9"
+mixin = "0.8.5"
+
+autoservice = "1.0.1"
+autoextension = "0.1.1"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loader" }
+
+qfapi = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "qfapi" }
+groovyduvet_all = { module = "io.github.lukebemish.groovyduvet:groovyduvet", version.ref = "groovyduvet" }
+groovyduvet_groovy = { module = "io.github.lukebemish.groovyduvet:groovyduvet-groovy", version.ref = "groovyduvet" }
+cgl_common = { module = "io.github.groovymc.cgl:cgl-1.19.3", version.ref = "cgl" }
+cgl_forge = { module = "io.github.groovymc.cgl:cgl-1.19.3-forge", version.ref = "cgl" }
+cgl_quilt = { module = "io.github.groovymc.cgl:cgl-1.19.3-quilt", version.ref = "cgl" }
+
+gml = { module = "com.matyrobbrt.gml:gml", version.ref = "gml" }
+jankson = { module = "blue.endless:jankson", version.ref = "jankson" }
+
+groovy_core = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
+
+forge = { module = "net.minecraftforge:forge", version.ref = "forge" }
+
+autoservice = { module = "com.google.auto.service:auto-service", version.ref = "autoservice" }
+autoextension = { module = "dev.lukebemish.autoextension:autoextension", version.ref = "autoextension" }
+
+[plugins]
+quilt_loom = { id = "org.quiltmc.loom", version = "1.+" }
+forgegradle = {id = "net.minecraftforge.gradle", version = "5.1.+"}
+librarian = {id = "org.parchmentmc.librarian.forgegradle", version = "1.+"}
+mixin = {id = "org.spongepowered.mixin", version = "0.7.+"}

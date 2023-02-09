@@ -1,0 +1,17 @@
+{
+  "multipart": [
+    {   "apply": { "model": "cobbledpaths:block/purpur_path" }},
+    {   "when": { "north": "true" },
+      "apply": { "model": "cobbledpaths:block/purpur_path_modified", "uvlock": true }
+    },
+    {   "when": { "east": "true" },
+      "apply": { "model": "cobbledpaths:block/purpur_path_modified", "y": 90, "uvlock": true }
+    },
+    {   "when": { "south": "true" },
+      "apply": { "model": "cobbledpaths:block/purpur_path_modified", "y": 180, "uvlock": true }
+    },
+    {   "when": { "west": "true" },
+      "apply": { "model": "cobbledpaths:block/purpur_path_modified", "y": 270, "uvlock": true }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+plugins {
+    alias libs.plugins.quilt.loom
+    id 'idea'
+}
+
+archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Quilt Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        server {
+            server()
+            setConfigName("Quilt Server")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+    }
+}
+
+dependencies {
+    minecraft libs.minecraft
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${libs.versions.parchment.minecraft.get()}:${libs.versions.parchment.mappings.get()}@zip")
+    }
+
+    modImplementation libs.quilt.loader
+
+    modImplementation libs.qfapi
+
+    modImplementation(libs.cgl.quilt) {
+        exclude group: 'org.quiltmc'
+    }
+
+    runtimeOnly(libs.groovyduvet.groovy) {
+        exclude group: 'org.quiltmc'
+    }
+    modImplementation(libs.groovyduvet.all) {
+        exclude group: 'org.quiltmc'
+    }
+
+    compileOnly(project(path: ":Common", configuration: "namedElements")) {
+        exclude group: 'org.quiltmc'
+    }
+}
+
+tasks.withType(GroovyCompile) {
+    source project(":Common").sourceSets.main.allGroovy
+}
+
+tasks.withType(JavaCompile) {
+    source project(":Common").sourceSets.main.allJava
+}
+
+processResources {
+    from project(':Common').sourceSets.main.resources
+    exclude 'mods.groovy'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
+            version = project.version
+            from components.java
+        }
+    }
+}

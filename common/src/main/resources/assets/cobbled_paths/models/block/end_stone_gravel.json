@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "cobbled_paths:block/end_stone_gravel"
-  }
-}

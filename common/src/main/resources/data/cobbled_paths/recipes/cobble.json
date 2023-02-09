@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:cobblestone"
-  },
-  "result": "cobbled_paths:cobble",
-  "count": 16
-}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:nether_brick"
+  },
+  "result": "cobbledpaths:nether_brick_sett",
+  "count": 4
+}

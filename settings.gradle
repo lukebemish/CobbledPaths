@@ -1,18 +1,41 @@
 pluginManagement {
     repositories {
-        maven { url "https://maven.fabricmc.net/" }
-        maven { url "https://maven.architectury.dev/" }
         maven {
-            name = 'Cotton'
-            url = 'https://server.bbkr.space/artifactory/libs-release/'
+            name = 'Quilt'
+            url = uri("https://maven.quiltmc.org/repository/release")
         }
-        maven { url "https://maven.minecraftforge.net/" }
+        maven {
+            name = 'Fabric'
+            url = uri("https://maven.fabricmc.net/")
+        }
+        maven {
+            name = 'TheModdingInquisition'
+            url = 'https://maven.moddinginquisition.org/releases'
+        }
+        maven {
+            url "https://maven.lukebemish.dev/releases"
+        }
+        maven {
+            name = 'Minecraft Forge'
+            url = 'https://maven.minecraftforge.net'
+        }
+        maven {
+            name = 'ParchmentMC'
+            url = 'https://maven.parchmentmc.org'
+        }
         gradlePluginPortal()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.toString() == 'org.spongepowered.mixin') {
+                useModule("org.spongepowered:mixingradle:${requested.version}")
+            }
+        }
     }
 }
 
-include("common")
-include("fabric")
-include("forge")
+rootProject.name = 'CobbledPaths'
 
-rootProject.name = "cobbled_paths"
+include 'Common'
+include 'Quilt'
+include 'Forge'

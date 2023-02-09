@@ -1,0 +1,14 @@
+{   "parent": "block/block",
+  "textures": {
+    "particle": "cobbledpaths:block/stone_path",
+    "top": "cobbledpaths:block/stone_path"
+  },
+  "elements": [
+    {   "from": [ 0, -1, -0.005 ],
+      "to": [ 16, 15, -0.005 ],
+      "faces": {
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#top", "cullface": "north" }
+      }
+    }
+  ]
+}
