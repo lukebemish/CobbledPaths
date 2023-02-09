@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2022-2023 Luke Bemish and contributors
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ */
+
 ModsDotGroovy.make {
     modLoader = 'gml'
     loaderVersion = '[1,)'

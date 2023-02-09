@@ -1,6 +1,8 @@
 plugins {
     alias libs.plugins.quilt.loom
     id 'idea'
+    id 'com.matthewprenger.cursegradle' version '1.+'
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
@@ -69,6 +71,45 @@ publishing {
             artifactId = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
             version = project.version
             from components.java
+        }
+    }
+}
+
+if (project.hasProperty("curseforge_key")) {
+    curseforge {
+        apiKey = project.curseforge_key
+        project {
+            id = '573329'
+            releaseType = "${project.release_type}"
+            addGameVersion "${libs.versions.minecraft.get()}"
+            addGameVersion 'Quilt'
+            mainArtifact(remapJar) {
+                displayName = "Cobbled Paths [Quilt] v$project.version"
+            }
+            relations {
+                requiredDependency 'groovyduvet'
+                requiredDependency 'qsl'
+            }
+        }
+        options {
+            forgeGradleIntegration = true
+        }
+    }
+}
+
+if (project.hasProperty("modrinth_key")) {
+    modrinth {
+        token = project.modrinth_key
+        projectId = 'Si1Oa29R'
+        versionNumber = "$project.version"
+        versionType = "${project.release_type}"
+        detectLoaders = false
+        uploadFile = remapJar
+        gameVersions = ["${libs.versions.minecraft.get()}"]
+        loaders = ['quilt']
+        dependencies {
+            required.project 'groovyduvet'
+            required.project 'qsl'
         }
     }
 }

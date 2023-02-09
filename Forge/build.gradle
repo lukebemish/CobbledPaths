@@ -2,6 +2,8 @@ plugins {
     alias libs.plugins.forgegradle
     alias libs.plugins.librarian
     alias libs.plugins.mixin
+    id 'com.matthewprenger.cursegradle' version '1.+'
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-forge"
@@ -65,8 +67,6 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 repositories {
 }
 
-jarJar.enable()
-
 dependencies {
     minecraft libs.forge
 
@@ -97,19 +97,7 @@ processResources {
 }
 
 jar {
-    classifier 'partial'
     finalizedBy('reobfJar')
-}
-
-tasks.build.dependsOn tasks.jarJar
-
-reobf {
-    jarJar {}
-}
-
-tasks.jarJar {
-    classifier ''
-    finalizedBy tasks.reobfJarJar
 }
 
 publishing {
@@ -118,7 +106,45 @@ publishing {
             groupId = project.group
             artifactId = "${mod_id}-${libs.versions.minecraft.get()}-forge"
             version = project.version
-            artifacts = [tasks.jarJar, sourcesJar]
+            artifacts = [jar, sourcesJar]
+        }
+    }
+}
+
+if (project.hasProperty("curseforge_key")) {
+    curseforge {
+        apiKey = project.curseforge_key
+        project {
+            id = '573329'
+            releaseType = "${project.release_type}"
+            addGameVersion "${libs.versions.minecraft.get()}"
+            addGameVersion 'Forge'
+            mainArtifact(jar) {
+                displayName = "Cobbled Paths [Forge] v$project.version"
+            }
+            relations {
+                requiredDependency 'gml'
+            }
+        }
+        options {
+            forgeGradleIntegration = true
+        }
+    }
+}
+
+if (project.hasProperty("modrinth_key")) {
+    modrinth {
+        token = project.modrinth_key
+        projectId = 'Si1Oa29R'
+        versionNumber = "$project.version"
+        versionType = "${project.release_type}"
+        detectLoaders = false
+        uploadFile = jar
+        gameVersions = ["${libs.versions.minecraft.get()}"]
+        loaders = ['forge']
+        dependencies {
+            // not on modrinth yet:
+            //required.project 'gml'
         }
     }
 }

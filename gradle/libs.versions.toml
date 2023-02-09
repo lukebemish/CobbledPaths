@@ -41,7 +41,7 @@ autoservice = { module = "com.google.auto.service:auto-service", version.ref = "
 autoextension = { module = "dev.lukebemish.autoextension:autoextension", version.ref = "autoextension" }
 
 [plugins]
-quilt_loom = { id = "org.quiltmc.loom", version = "1.+" }
+quilt_loom = { id = "org.quiltmc.loom", version = "1.0.+" }
 forgegradle = {id = "net.minecraftforge.gradle", version = "5.1.+"}
 librarian = {id = "org.parchmentmc.librarian.forgegradle", version = "1.+"}
 mixin = {id = "org.spongepowered.mixin", version = "0.7.+"}

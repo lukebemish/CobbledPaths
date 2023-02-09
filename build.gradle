@@ -1,5 +1,6 @@
 plugins {
     id 'io.github.groovymc.modsdotgroovy' version '1.1.2'
+    id 'org.cadixdev.licenser' version '0.6.1' apply false
 }
 
 modsDotGroovy {
@@ -10,9 +11,14 @@ modsDotGroovy {
 subprojects {
     apply plugin: 'groovy'
     apply plugin: 'maven-publish'
+    apply plugin: 'org.cadixdev.licenser'
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
     java.withSourcesJar()
+
+    license {
+        header = rootProject.file('header.txt')
+    }
 
     repositories {
         mavenCentral()
