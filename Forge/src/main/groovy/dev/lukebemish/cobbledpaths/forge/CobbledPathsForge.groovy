@@ -19,14 +19,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 class CobbledPathsForge {
     CobbledPathsForge() {
         CobbledPathsCommon.init()
-        modBus.addListener(CobbledPathsForge::onCommonSetup)
-        modBus.addListener(CobbledPathsForge::onTabsSetup)
-    }
-
-    static void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork({
-            CobbledPathsCommon.setupTransforms()
-        } as Runnable)
+        modBus.addListener(FMLCommonSetupEvent) {
+            it.enqueueWork {
+                CobbledPathsCommon.setupTransforms()
+            }
+        }
+        modBus.addListener(CreativeModeTabEvent.BuildContents) {
+            onTabsSetup(it)
+        }
     }
 
     static void onTabsSetup(CreativeModeTabEvent.BuildContents event) {

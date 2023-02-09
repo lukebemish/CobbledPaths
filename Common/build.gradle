@@ -8,6 +8,10 @@ loom {
     runConfigs.configureEach {
         ideConfigGenerated = false
     }
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = 'cobbledpaths.refmap.json'
+    }
 }
 
 dependencies {

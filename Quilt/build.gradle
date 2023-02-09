@@ -22,6 +22,12 @@ loom {
             runDir("run")
         }
     }
+
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = 'cobbledpaths.refmap.json'
+        //add 'main', 'cobbledpaths.refmap.json'
+    }
 }
 
 dependencies {

@@ -57,11 +57,6 @@ minecraft {
     }
 }
 
-mixin {
-    add project(":Common").sourceSets.main, 'cobbledpaths.refmap.json'
-    config 'mixin.cobbledpaths_common.json'
-}
-
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
 repositories {
@@ -81,6 +76,11 @@ dependencies {
     }
 
     compileOnly project(path: ":Common", configuration: "namedElements")
+}
+
+mixin {
+    add project(":Common").sourceSets.main, 'cobbledpaths.refmap.json'
+    config 'mixin.cobbledpaths_common.json'
 }
 
 tasks.withType(GroovyCompile) {

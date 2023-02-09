@@ -11,5 +11,6 @@
   "server": [],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "cobbledpaths.refmap.json"
 }
