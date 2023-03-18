@@ -6,6 +6,7 @@ buildscript {
 }
 
 plugins {
+    alias libs.plugins.quilt.loom apply false
     id 'io.github.groovymc.modsdotgroovy' version '1.1.2'
     id 'org.cadixdev.licenser' version '0.6.1' apply false
 }

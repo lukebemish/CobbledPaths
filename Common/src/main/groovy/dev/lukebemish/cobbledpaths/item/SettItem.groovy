@@ -32,12 +32,6 @@ class SettItem extends Item {
         this.originalBlocks = Arrays.asList(originalBlocks)
     }
 
-    SettItem(Properties properties, Supplier<? extends Block> createdBlock, List<Supplier<? extends Block>> originalBlocks) {
-        super(properties)
-        this.createdBlock = createdBlock
-        this.originalBlocks = List.copyOf(originalBlocks)
-    }
-
     @Override
     InteractionResult useOn(UseOnContext context) {
         Level level = context.level

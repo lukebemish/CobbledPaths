@@ -1,9 +1,10 @@
 plugins {
-    alias libs.plugins.quilt.loom
     id 'idea'
     id 'com.matthewprenger.cursegradle' version '1.+'
     id "com.modrinth.minotaur" version "2.+"
 }
+
+apply plugin: libs.plugins.quilt.loom.get().pluginId
 
 archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
 
