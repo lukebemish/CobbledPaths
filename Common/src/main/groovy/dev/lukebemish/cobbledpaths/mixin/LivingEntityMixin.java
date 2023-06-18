@@ -52,7 +52,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "baseTick()V", at = @At("HEAD"))
     private void cobbledpaths$baseTick(CallbackInfo ci) {
-        BlockState state = this.level.getBlockState(this.blockPosition());
+        BlockState state = this.level().getBlockState(this.blockPosition());
         if (state.is(CobbledPathsCommon.getPURPUR_PATH().get()) || state.is(CobbledPathsCommon.getCRACKED_PURPUR_PATH().get())) {
             if (!this.getActiveEffects().containsKey(MobEffects.JUMP) || this.getActiveEffects().get(MobEffects.JUMP).getAmplifier() < 2) {
                 this.addEffect(new MobEffectInstance(MobEffects.JUMP, 10, 2, false, false, false));
@@ -62,7 +62,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "checkFallDamage", at = @At("HEAD"))
     private void cobbledpaths$checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos, CallbackInfo ci) {
-        if (!this.level.isClientSide && onGround && this.fallDistance > 0.0F) {
+        if (!this.level().isClientSide && onGround && this.fallDistance > 0.0F) {
             this.cobbledpaths$removeStickySpeed();
             this.cobbledpaths$checkStickySpeed();
         }
@@ -84,7 +84,7 @@ public abstract class LivingEntityMixin extends Entity {
                     return;
                 }
             }
-            Block block = this.level.getBlockState(this.blockPosition()).getBlock();
+            Block block = this.level().getBlockState(this.blockPosition()).getBlock();
             if (block instanceof BetterPathBlock betterPathBlock) {
                 double modifier = betterPathBlock.getSpeedModifier();
                 AttributeInstance movementSpeed = ((LivingEntity)(Object)this).getAttributes().getInstance(Attributes.MOVEMENT_SPEED);

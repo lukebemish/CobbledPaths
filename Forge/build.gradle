@@ -2,11 +2,11 @@ plugins {
     alias libs.plugins.forgegradle
     alias libs.plugins.librarian
     alias libs.plugins.mixin
-    id 'com.matthewprenger.cursegradle' version '1.+'
-    id "com.modrinth.minotaur" version "2.+"
+    alias libs.plugins.cursegradle
+    alias libs.plugins.minotaur
 }
 
-archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-forge"
+base.archivesName = "${mod_id}-forge-${libs.versions.minecraft.get()}"
 
 minecraft {
     mappings channel: 'parchment', version: "${libs.versions.parchment.minecraft.get()}-${libs.versions.parchment.mappings.get()}-${libs.versions.minecraft.get()}"
@@ -67,13 +67,12 @@ dependencies {
 
     annotationProcessor "org.spongepowered:mixin:${libs.versions.mixin.get()}:processor"
 
-    implementation fg.deobf(libs.cgl.forge.get())
-    compileOnly libs.jankson
-
-    compileOnly "com.matyrobbrt.gml:gml:${libs.versions.gml.get()}:all"
-    runtimeOnly(fg.deobf("com.matyrobbrt.gml:gml:${libs.versions.gml.get()}:all")) {
+    compileOnly(libs.gml.get())
+    runtimeOnly(fg.deobf(variantOf(libs.gml) { classifier 'all' }.get())) {
         exclude module: 'transform'
     }
+
+    compileOnly fg.deobf(libs.cgl.forge.get())
 
     compileOnly project(path: ":Common", configuration: "namedElements")
 }
@@ -111,9 +110,9 @@ publishing {
     }
 }
 
-if (project.hasProperty("curseforge_key")) {
+if (System.getenv('CURSEFORGE_KEY')) {
     curseforge {
-        apiKey = project.curseforge_key
+        apiKey = System.getenv('CURSEFORGE_KEY')
         project {
             id = '573329'
             releaseType = "${project.release_type}"
@@ -132,9 +131,9 @@ if (project.hasProperty("curseforge_key")) {
     }
 }
 
-if (project.hasProperty("modrinth_key")) {
+if (System.getenv('MODRINTH_KEY')) {
     modrinth {
-        token = project.modrinth_key
+        token = System.getenv('MODRINTH_KEY')
         projectId = 'Si1Oa29R'
         versionNumber = "$project.version"
         versionType = "${project.release_type}"
@@ -143,8 +142,7 @@ if (project.hasProperty("modrinth_key")) {
         gameVersions = ["${libs.versions.minecraft.get()}"]
         loaders = ['forge']
         dependencies {
-            // not on modrinth yet:
-            //required.project 'gml'
+            required.project 'gml'
         }
     }
 }

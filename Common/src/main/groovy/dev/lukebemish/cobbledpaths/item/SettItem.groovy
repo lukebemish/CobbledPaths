@@ -18,6 +18,7 @@ import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.gameevent.GameEvent
 
 import java.util.function.Supplier
 
@@ -45,10 +46,14 @@ class SettItem extends Item {
                 Block toCreate = createdBlock.get()
                 if (toCreate instanceof BetterPathBlock) {
                     level.playSound(player, blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F)
-                    BlockState outState = toCreate.defaultBlockState()
-                    outState = BetterPathBlock.updateBlockState(outState, level, blockPos)
-                    level.setBlock(blockPos, outState, Block.UPDATE_ALL_IMMEDIATE)
-                    context.itemInHand.shrink(1)
+                    if (!level.isClientSide) {
+                        BlockState outState = toCreate.defaultBlockState()
+                        level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, outState))
+                        outState = BetterPathBlock.updateBlockState(outState, level, blockPos)
+                        level.setBlock(blockPos, outState, Block.UPDATE_ALL_IMMEDIATE)
+                        context.itemInHand.shrink(1)
+                    }
+                    return InteractionResult.sidedSuccess(level.isClientSide)
                 }
             }
         }

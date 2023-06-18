@@ -15,7 +15,9 @@ ModsDotGroovy.make {
         displayName = this.buildProperties['mod_name']
         version = this.version
         group = this.group
-        intermediate_mappings = 'net.fabricmc:intermediary'
+        onQuilt {
+            intermediate_mappings = 'net.fabricmc:intermediary'
+        }
         displayUrl = 'https://github.com/lukebemish/CobbledPaths'
 
         description = "Adds various cobbled and paved paths"
@@ -35,7 +37,7 @@ ModsDotGroovy.make {
 
             onQuilt {
                 mod('groovyduvet') {
-                    versionRange = ">=${this.libs.versions.groovyduvet}"
+                    versionRange = ">=${this.libs.versions.groovyduvet.all}"
                 }
             }
 

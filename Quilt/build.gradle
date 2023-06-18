@@ -1,12 +1,12 @@
 plugins {
     id 'idea'
-    id 'com.matthewprenger.cursegradle' version '1.+'
-    id "com.modrinth.minotaur" version "2.+"
+    alias libs.plugins.cursegradle
+    alias libs.plugins.minotaur
 }
 
 apply plugin: libs.plugins.quilt.loom.get().pluginId
 
-archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
+base.archivesName = "${mod_id}-quilt-${libs.versions.minecraft.get()}"
 
 loom {
     runs {
@@ -23,12 +23,20 @@ loom {
             runDir("run")
         }
     }
-
+    runs.each {
+        it.vmArgs '-Dnet.fabricmc.tinyremapper.knownindybsm=org/codehaus/groovy/vmplugin/v8/IndyInterface'
+    }
     mixin {
         useLegacyMixinAp = true
         defaultRefmapName = 'cobbledpaths.refmap.json'
         //add 'main', 'cobbledpaths.refmap.json'
     }
+}
+
+configurations {
+    localImplementation
+    runtimeClasspath.extendsFrom localImplementation
+    compileOnly.extendsFrom localImplementation
 }
 
 dependencies {
@@ -42,16 +50,8 @@ dependencies {
 
     modImplementation libs.qfapi
 
-    modImplementation(libs.cgl.quilt) {
-        exclude group: 'org.quiltmc'
-    }
-
-    runtimeOnly(libs.groovyduvet.groovy) {
-        exclude group: 'org.quiltmc'
-    }
-    modImplementation(libs.groovyduvet.all) {
-        exclude group: 'org.quiltmc'
-    }
+    modImplementation libs.groovyduvet.all
+    localImplementation libs.groovyduvet.core
 
     compileOnly(project(path: ":Common", configuration: "namedElements")) {
         exclude group: 'org.quiltmc'
@@ -74,17 +74,15 @@ processResources {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = project.group
-            artifactId = "${mod_id}-${libs.versions.minecraft.get()}-quilt"
-            version = project.version
             from components.java
         }
     }
 }
 
-if (project.hasProperty("curseforge_key")) {
+
+if (System.getenv('CURSEFORGE_KEY')) {
     curseforge {
-        apiKey = project.curseforge_key
+        apiKey = System.getenv('CURSEFORGE_KEY')
         project {
             id = '573329'
             releaseType = "${project.release_type}"
@@ -104,9 +102,9 @@ if (project.hasProperty("curseforge_key")) {
     }
 }
 
-if (project.hasProperty("modrinth_key")) {
+if (System.getenv('MODRINTH_KEY')) {
     modrinth {
-        token = project.modrinth_key
+        token = System.getenv('MODRINTH_KEY')
         projectId = 'Si1Oa29R'
         versionNumber = "$project.version"
         versionType = "${project.release_type}"

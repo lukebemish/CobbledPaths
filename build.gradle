@@ -1,31 +1,48 @@
 buildscript {
     dependencies {
-        // to fix GSON weirdness with minotaur and FG
-        classpath 'com.google.code.gson:gson:2.10'
+        classpath libs.tinyremapper
     }
 }
 
 plugins {
+    alias libs.plugins.mdg
     alias libs.plugins.quilt.loom apply false
-    id 'io.github.groovymc.modsdotgroovy' version '1.1.2'
-    id 'org.cadixdev.licenser' version '0.6.1' apply false
+    alias libs.plugins.quilt.licenser apply false
 }
 
 modsDotGroovy {
-    dslVersion = '1.2.1'
+    dslVersion = libs.versions.mdg.dsl.get()
     platform 'multiloader'
+}
+
+tasks.register('printVersionName') {
+    doLast{
+        println "GRADLE_VERSION=(${project.version}-${libs.versions.minecraft.get()})"
+    }
+}
+
+allprojects {
+    configurations.configureEach {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.module.with {it?.name == 'tiny-remapper' && it?.group == 'net.fabricmc'}) {
+                details.useTarget libs.tinyremapper
+            }
+        }
+    }
 }
 
 subprojects {
     apply plugin: 'groovy'
     apply plugin: 'maven-publish'
-    apply plugin: 'org.cadixdev.licenser'
+    apply plugin: libs.plugins.quilt.licenser.get().pluginId
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
     java.withSourcesJar()
 
     license {
-        header = rootProject.file('header.txt')
+        rule rootProject.file('header.txt')
+        exclude '**/*.mcmeta'
+        exclude '**/package-info.java'
     }
 
     repositories {
@@ -41,11 +58,6 @@ subprojects {
             name = 'ParchmentMC'
             url = 'https://maven.parchmentmc.org'
         }
-        // For CHASM until loader is fixed
-        maven {
-            name = 'Quilt Snapshot'
-            url = uri("https://maven.quiltmc.org/repository/snapshot")
-        }
     }
 
     tasks.withType(JavaCompile).configureEach {
@@ -58,7 +70,7 @@ subprojects {
         it.groovyOptions.optimizationOptions.indy = true
         it.groovyOptions.optimizationOptions.groovydoc = true
         it.groovyOptions.javaAnnotationProcessing = true
-        it.groovyOptions.keepStubs = true // for debugging
+        //it.groovyOptions.keepStubs = true // for debugging
         it.groovyOptions.configurationScript = rootProject.file('compile.groovy')
         it.exclude('mods.groovy')
     }
@@ -82,8 +94,6 @@ subprojects {
     }
 
     dependencies {
-        compileOnly libs.groovy.core
-
         annotationProcessor libs.autoextension
         annotationProcessor libs.autoservice
         compileOnly libs.autoextension

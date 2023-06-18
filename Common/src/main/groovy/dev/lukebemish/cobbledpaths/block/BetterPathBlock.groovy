@@ -59,10 +59,6 @@ class BetterPathBlock extends DirtPathBlock {
 
     final Supplier<Block> original
 
-    BetterPathBlock(Properties properties, Supplier<Block> original) {
-        this(properties, original, 1.0F)
-    }
-
     BetterPathBlock(Properties properties, Supplier<Block> original, float speedModifier) {
         super(properties)
         this.original = original

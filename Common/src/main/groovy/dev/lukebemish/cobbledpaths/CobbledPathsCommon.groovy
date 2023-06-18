@@ -10,8 +10,10 @@ import dev.lukebemish.cobbledpaths.item.SettItem
 import dev.lukebemish.cobbledpaths.item.SledgehammerItem
 import dev.lukebemish.cobbledpaths.item.SpadeItem
 import groovy.transform.CompileStatic
-import io.github.groovymc.cgl.reg.RegistrationProvider
-import io.github.groovymc.cgl.reg.RegistryObject
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
+import net.minecraft.world.level.material.MapColor
+import org.groovymc.cgl.reg.RegistrationProvider
+import org.groovymc.cgl.reg.RegistryObject
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
@@ -24,7 +26,6 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.material.Material
 
 import java.util.function.Supplier
 
@@ -40,23 +41,23 @@ final class CobbledPathsCommon {
 
     public static final UUID STICKY_SPEED_UUID = UUID.fromString("51c53134-f501-4d3b-897e-cc2af5b3bd26")
 
-    static final BlockBehaviour.Properties COBBLED_PROPERTIES = BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRASS).strength(0.70f)
+    static final BlockBehaviour.Properties COBBLED_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).sound(SoundType.GRASS).strength(0.70f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties STONE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(0.70f)
+    static final BlockBehaviour.Properties STONE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).strength(0.70f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties DEEPSLATE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(0.75f)
+    static final BlockBehaviour.Properties DEEPSLATE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).strength(0.75f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties ICE_PROPERTIES = BlockBehaviour.Properties.of(Material.ICE_SOLID).sound(SoundType.GLASS).strength(0.50f)
+    static final BlockBehaviour.Properties ICE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.ICE).sound(SoundType.GLASS).strength(0.50f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties BLUE_ICE_PROPERTIES = BlockBehaviour.Properties.of(Material.ICE_SOLID).sound(SoundType.GLASS).strength(0.50f)
+    static final BlockBehaviour.Properties BLUE_ICE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.ICE).sound(SoundType.GLASS).strength(0.50f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties NETHER_BRICK_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(0.70f)
+    static final BlockBehaviour.Properties NETHER_BRICK_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.70f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties BLACKSTONE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(0.75f)
+    static final BlockBehaviour.Properties BLACKSTONE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.75f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties OBSIDIAN_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(1.00f)
+    static final BlockBehaviour.Properties OBSIDIAN_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(1.00f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
-    static final BlockBehaviour.Properties PURPUR_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(0.75f)
+    static final BlockBehaviour.Properties PURPUR_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.75f)
         .isViewBlocking(CobbledPathsCommon::always).isSuffocating(CobbledPathsCommon::always)
 
     static final RegistryObject<BetterPathBlock> COBBLED_PATH = BLOCKS.register("cobbled_path", () -> new BetterPathBlock(COBBLED_PROPERTIES, () -> Blocks.DIRT, 1.15F))

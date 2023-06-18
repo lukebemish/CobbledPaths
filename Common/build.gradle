@@ -1,6 +1,6 @@
 apply plugin: libs.plugins.quilt.loom.get().pluginId
 
-archivesBaseName = "${mod_id}-${libs.versions.minecraft.get()}"
+base.archivesName = "${mod_id}-common-${libs.versions.minecraft.get()}"
 
 loom {
     runConfigs.configureEach {
@@ -18,6 +18,7 @@ dependencies {
     //DO NOT USE IN PROJECT
     //Provides necessary stuff for project to compile
     modCompileOnly libs.quilt.loader
+    compileOnly libs.groovyduvet.core
 
     modCompileOnly libs.cgl.common
 }
@@ -34,7 +35,7 @@ groovydoc {
 }
 
 tasks.register('groovydocJar', Jar) {
-    it.classifier 'javadoc'
+    it.archiveClassifier.set 'javadoc'
     it.from groovydoc.destinationDir
     it.dependsOn(groovydoc)
 }
@@ -46,9 +47,6 @@ processResources {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = project.group
-            artifactId = "${mod_id}-${libs.versions.minecraft.get()}"
-            version = project.version
             from components.java
             artifact groovydocJar
         }
